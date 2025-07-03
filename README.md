@@ -27,6 +27,6 @@ Whether its hyperion_injector.exe or your own compiled exe using this api, admin
 Since this is borrowing a thread, make sure you return from DllMain as quick as possible or else it may sense somethings up. This injector is meant for performing quick tasks. <br>
 Alternatively, if you wish to create a new theead you will have to use your own bypass for thread creation.
 
-# 2. Use C functions when possible
+# 3. Keep it minimal
 To heavily reduce the risk of detection, try to use C code snd C functions if at all possible.
-C++17 and up has a lot of great features but they all rely heavily on dependencies. The std library uses a ton of dependencies. I recommend use very minimal functions.
+C++17 and up has a lot of great features but they all rely heavily on dependencies. The std library uses a ton of dependencies. I recommend use very minimal functions and avoid complex C++ code, virtual classes etc. 
