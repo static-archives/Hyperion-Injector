@@ -18,5 +18,6 @@ The inject function takes the process id and the parh to the dll you want to inj
 the update function MUST be called in a while loop, immediately after calling inject. It sustains the bypass as long as rhe process is open by updating the IC of the process. <br>
 
 # PLEASE NOTE:
-# You MUST run as ADMIN, whether its hyperion_injector.exe or your own compiled exe using this api. Admin rights are required to modify certain properties of another process 
+# You MUST run as ADMIN
+Whether its hyperion_injector.exe or your own compiled exe using this api, admin rights are required for the api to work.
 
