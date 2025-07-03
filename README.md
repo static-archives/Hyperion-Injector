@@ -30,4 +30,10 @@ Alternatively, if you wish to create a new thread you will have to use your own 
 
 # 3. Keep it minimal
 To heavily reduce the risk of detection, try to use C code and C functions if at all possible.
-C++17 and up has a lot of great features but they all rely heavily on dependencies. The std library uses a ton of dependencies. Every import you use has a chance of being hooked -- even malloc. I recommend use very minimal functions and avoid complex C++ code, virtual classes etc. 
+C++17 and up has a lot of great features but they all rely heavily on dependencies. The std library uses a ton of dependencies. Every import you use has a chance of being hooked -- even malloc. I recommend use very minimal functions and avoid complex C++ code, virtual classes etc. <br>
+<br>
+To enable support for core features in your dll, run this before anything else (place in your DllMain):<br>
+LoadLibraryA("MSVCP140.dll");<br>
+LoadLibraryA("VCRUNTIME140.dll");<br>
+<br>
+Now it will be able to support most of the std library, string/file streams, and functions like memcpy/strcpy/etc.
