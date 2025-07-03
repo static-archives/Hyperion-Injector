@@ -37,5 +37,5 @@ Now it will be able to support most of the std library, string/file streams, and
 
 # 4. Keep it minimal
 To heavily reduce the risk of detection, try to use C code and C functions if at all possible.
-C++17 and up has a lot of great features but they all rely heavily on dependencies. The std library uses a ton of dependencies. Every import you use has a chance of being hooked -- even malloc. I recommend use very minimal functions and avoid complex C++ code, virtual classes etc. <br>
+C++17 and up has a lot of great features but they all rely heavily on dependencies. The std library uses a ton of dependencies. Every import you use has a chance of being hooked -- even malloc. I recommend use very minimal functions and avoid complex code. <br>
 <br>
