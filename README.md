@@ -10,12 +10,14 @@ Then, by use of the IC, it detours a thread at random (or an optional targeted t
 bin/hyperion_inject.dll - The api which provides you with the functions "inject", to inject a dll, and "update", which must be called in a while loop. <br>
 bin/hello_world.dll - A simple test dll that displays a message box <br>
 bin/hyperion_injector.exe - Basically an empty project compiled with the source file here. <br>
+main.cop - A demo injector source using the api <br>
 
 # How to use
 
-The api is pretty self explanatory, take a look at main.cpp. <br>
-The inject function takes the process id and the parh to the dll you want to inject. <br>
-the update function MUST be called in a while loop, immediately after calling inject. It sustains the bypass as long as rhe process is open by updating the IC of the process. <br>
+The api is pretty self explanatory, take a look at main.cpp. I've placed comments in the source file to walk you through it.  <br>
+The "inject" function takes the process id and the parh to the dll you want to inject. <br>
+the "update" function MUST be called in a while loop, immediately after calling inject. It sustains the bypass as long as rhe process is open and only returns when the process is closed. You may spawn this loop in a new thead.<br>
+
 
 # PLEASE NOTE:
 # You MUST run as ADMIN
