@@ -1,6 +1,5 @@
 #include <Windows.h>
 #include <iostream>
-#include <direct.h> 
 
 // Declarations for hyperion_inject.dll imports
 typedef int(__fastcall* t_inject)(const DWORD pid, const char* const dll_path);
