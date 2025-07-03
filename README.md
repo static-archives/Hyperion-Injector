@@ -16,7 +16,7 @@ main.cop - A demo injector source using the api <br>
 
 The api is pretty self explanatory, take a look at main.cpp. I've placed comments in the source file to walk you through it.  <br>
 The "inject" function takes the process id and the parh to the dll you want to inject. <br>
-the "update" function MUST be called in a while loop, immediately after calling inject. It sustains the bypass as long as rhe process is open and only returns when the process is closed. You may spawn this loop in a new thead.<br>
+the "update" function MUST be called in a while loop with zero delays, immediately after calling inject. It resumes the process and sustains the bypass as long as the process is open and only returns when the process is closed. You may spawn this loop in a new thead.<br>
 
 
 # PLEASE NOTE:
