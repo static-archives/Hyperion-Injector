@@ -28,6 +28,7 @@ Here is a sample DLL source code you can use which logs an exception.<br>
 ```cpp
 // dllmain.cpp : Defines the entry point for the DLL application.
 #include <Windows.h>
+#include <sstream>
 
 bool logged_exception = false;
 
@@ -37,9 +38,9 @@ int64_t kiuser_hook(PEXCEPTION_RECORD precord, PCONTEXT pctx)
     {
         logged_exception = true;
         
-        char msg[64];
-        sprintf_s(msg, "Exception address: %p. Code: %08X\n", precord->ExceptionAddress, precord->ExceptionCode);
-        MessageBoxA(0, msg, "Exception", MB_OK);
+        std::stringstream ss;
+        ss << std::hex << "Exception address: " << precord->ExceptionAddress << ". Code: " << precord->ExceptionCode << std::endl;
+        MessageBoxA(0, ss.str().c_str(), "Exception", MB_OK);
     }
 
     return 0;
