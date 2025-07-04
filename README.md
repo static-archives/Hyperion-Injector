@@ -22,6 +22,56 @@ The api is pretty self explanatory, take a look at main.cpp. I've placed comment
 `update()` - this MUST be called in a while loop with zero delays, immediately after calling inject. It resumes the process and sustains the bypass as long as the process is open and only returns when the process is closed. Optionally you can spawn this loop in a new thead.<br>
 <br>
 
+There is also built-in functionality for setting a kiuser hook, as well as a detour for syscalls.<br>
+Here is a sample DLL source code you can use which logs an exception.<br>
+
+```cpp
+// dllmain.cpp : Defines the entry point for the DLL application.
+#include <Windows.h>
+
+bool logged_exception = false;
+
+int64_t kiuser_hook(PEXCEPTION_RECORD precord, PCONTEXT pctx)
+{
+    if (precord->ExceptionCode == EXCEPTION_SINGLE_STEP && !logged_exception)
+    {
+        logged_exception = true;
+        
+        char msg[64];
+        sprintf_s(msg, "Exception address: %p. Code: %08X\n", precord->ExceptionAddress, precord->ExceptionCode);
+        MessageBoxA(0, msg, "Exception", MB_OK);
+    }
+
+    return 0;
+}
+
+BOOL APIENTRY DllMain(HMODULE hModule, DWORD  ul_reason_for_call, LPVOID lpReserved)
+{
+    switch (ul_reason_for_call)
+    {
+    case DLL_PROCESS_ATTACH:
+    {
+        // Enable support for core C++ features
+        LoadLibraryA("MSVCP140.dll");
+        LoadLibraryA("VCRUNTIME140.dll");
+        LoadLibraryA("VCRUNTIME140_1.dll");
+
+        // Set kiuser hook
+        reinterpret_cast<PVOID*>(lpReserved)[1] = kiuser_hook;
+
+        // load_exploit();
+
+        break;
+    }
+    case DLL_THREAD_ATTACH:
+    case DLL_THREAD_DETACH:
+    case DLL_PROCESS_DETACH:
+        break;
+    }
+    return TRUE;
+}
+```
+
 # INPORTANT -- PLEASE READ:
 # 1. You MUST run as ADMIN
 Whether its hyperion_injector.exe or your own compiled exe using this api, admin rights are required for the api to work.
