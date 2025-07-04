@@ -17,7 +17,7 @@ main.cop - A demo injector source using the api <br>
 To try out injecting hello_world.dll, you can download the bin folder, join a server and wait for the game to load fully, then run the hyperion_injector.exe (make sure to run it as admin). <br>
 The api is pretty self explanatory, take a look at main.cpp. I've placed comments in the source file to walk you through it. The api functions are:<br>
 <br>
-`inject(DWORD pid, DWORD tid, const char* path)` - takes the process id to inject to (pid), thread id to run on (tid), and the path to the dll you want to inject. You can set "tid" to 0 if you want your DLL to run on any thread. It is recommended you use a less important thread to work with.<br>
+`inject(DWORD pid, DWORD tid, const char* path)` - takes the process id to inject to (pid), target thread id to run on (tid), and the path to the dll you want to inject. You can set "tid" to 0 if you want your DLL to run on any thread. It is recommended you use a less important thread to work with.<br>
 <br>
 `update()` - this MUST be called in a while loop with zero delays, immediately after calling inject. It resumes the process and sustains the bypass as long as the process is open and only returns when the process is closed. Optionally you can spawn this loop in a new thead.<br>
 <br>
