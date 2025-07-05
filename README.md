@@ -5,12 +5,12 @@ The injector provides FFE0000h bytes of RWX memory to inject to. <br>
 
 By using an IC, it detours a thread at random (or an optional targeted thread) to call the injected entry point. <br>
 
-# Files
+# Files in this repo
 
-bin/hyperion_inject.dll - The api which provides you with the functions "inject", to inject a dll, and "update", which must be called in a while loop. <br>
+bin/hyperion_inject.dll - The injector API<br>
 bin/hello_world.dll - A simple test dll that displays a message box <br>
-bin/hyperion_injector.exe - The compiled demo source. Injects "hello_world.dll" which must be in the same directory as the exe<br>
-main.cop - A demo injector source using the api <br>
+bin/hyperion_injector.exe - The compiled demo source. Injects "hello_world.dll" using the api when run (as admin*). All files must be in the same directory as this exe<br>
+main.cpp - A demo source using the api <br>
 
 # How to use
 
