@@ -34,7 +34,7 @@ bool logged_exception = false;
 
 int64_t kiuser_hook(PEXCEPTION_RECORD precord, PCONTEXT pctx)
 {
-    if (precord->ExceptionCode == EXCEPTION_SINGLE_STEP && !logged_exception)
+    if (precord->ExceptionCode == EXCEPTION_ACCESS_VIOLATION && !logged_exception)
     {
         logged_exception = true;
         
